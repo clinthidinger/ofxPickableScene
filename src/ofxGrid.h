@@ -58,9 +58,9 @@ public:
                     ofSetColor(this->color);
                 }
             }// end for each z dir line
-            ofPopMatrix();
-            ofPopStyle();
         }// end for each x dir line
+        ofPopMatrix();
+        ofPopStyle();
     }
     
     //! @brief Get the grid color.
