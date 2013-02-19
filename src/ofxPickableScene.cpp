@@ -93,7 +93,7 @@ ofxIPickable *ofxPickableScene::pick(int x, int y, ofCamera &cam, unsigned int m
     
     glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
     glBindBuffer(GL_PIXEL_PACK_BUFFER, pboId[0]);
-    glReadPixels(x - (halfPickPixelSize - 1), y - (halfPickPixelSize - 1), this->pickPixelSize, this->pickPixelSize, GL_BGRA, GL_UNSIGNED_BYTE, 0);
+    glReadPixels(x - (halfPickPixelSize), y - (/*pickPixelSize +*/ halfPickPixelSize), this->pickPixelSize, this->pickPixelSize, GL_BGRA, GL_UNSIGNED_BYTE, 0);
     glBindBuffer(GL_PIXEL_PACK_BUFFER, pboId[0]);
     GLubyte *pixelBuffer = (GLubyte *)glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
     if (pixelBuffer != NULL)
@@ -135,15 +135,21 @@ ofxIPickable *ofxPickableScene::pick(int x, int y, ofCamera &cam, unsigned int m
             }
         }
         
-        //#define DEBUG_PICKING 1
+//#define DEBUG_PICKING 1
 #ifdef DEBUG_PICKING
         y = ofGetViewportHeight() - y;
+        float scaleFactor = 10.0f;
         for(unsigned int byteIdx = 0; byteIdx < numBytes; ++byteIdx)
         {
-            pixelBuffer[byteIdx] ^= 0xFF;
+            //pixelBuffer[byteIdx] ^= 0xFF;
+            if(pixelBuffer[byteIdx] == 0x00)
+            {
+                pixelBuffer[byteIdx] = 0xFF;
+            }
         }
-        glRasterPos2f(x - (halfPickPixelSize - 1), y + (halfPickPixelSize - 1));
-        //glPixelZoom(::ofGetWindowWidth() / this->pickPixelSize, ::ofGetWindowHeight() / this->pickPixelSize);
+        float zoom = 10.0f;
+        glRasterPos2f(x - ((halfPickPixelSize) * zoom), y + ((halfPickPixelSize) * zoom));
+        glPixelZoom(zoom, zoom);
         glDrawPixels(this->pickPixelSize, this->pickPixelSize, GL_BGRA,  GL_UNSIGNED_BYTE, pixelBuffer);
 #endif
         
