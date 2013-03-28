@@ -36,9 +36,7 @@ public:
     void frameBoundingBox(const ofVec3f &minCorner, const ofVec3f &maxCorner);
 
     //! @brief Reset the camera.
-    //! @param tranlsation Camera translation.
-    //! @param orientation Camera orientation.
-    void reset(ofVec3f translation, ofVec3f orientation);
+    void reset();
     
 protected:
    //! @brief Previous mouse screen position.

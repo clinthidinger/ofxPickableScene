@@ -6,16 +6,7 @@
 //----------------------------------------
 ofxViewportCam::ofxViewportCam()
 {
-    target.setPosition(0.0f, 0.0f, 0.0f);
-    
-    drawWireFrame = true;
-    this->distance = 100.0f;
-    this->truckAmount = 0.0f;
-    this->boomAmount = 0.0f;
-    this->tiltAmount = 0.0f;
-    this->panAmount = 0.0f;
-    setPosition(0.0f, 0.0f, 0.0f);
-    move(0.0f, 0.0f, this->distance);
+   reset();
 }
 
 //----------------------------------------
@@ -104,7 +95,7 @@ void ofxViewportCam::zoom(float delta)
 
 //----------------------------------------
 void ofxViewportCam::frameBoundingBox(const ofVec3f &minCorner,
-                                     const ofVec3f &maxCorner)
+                                      const ofVec3f &maxCorner)
 {
     ofVec3f center((minCorner + maxCorner) * 0.5f);
     setTargetPosition(center);
@@ -114,11 +105,17 @@ void ofxViewportCam::frameBoundingBox(const ofVec3f &minCorner,
     dolly(this->distance);
 }
 
-void ofxViewportCam::reset(ofVec3f translation, ofVec3f orientation)
+//----------------------------------------
+void ofxViewportCam::reset()
 {
-    this->distance = translation.z;  
-    this->truckAmount = translation.x; 
-    this->boomAmount = translation.y;  
-    //this->tiltAmount = orientation.x; 
-    //this->panAmount = orientation.y;  
+    target.setPosition(0.0f, 0.0f, 0.0f);
+    
+    drawWireFrame = true;
+    this->distance = 100.0f;
+    this->truckAmount = 0.0f;
+    this->boomAmount = 0.0f;
+    this->tiltAmount = 0.0f;
+    this->panAmount = 0.0f;
+    setPosition(0.0f, 0.0f, 0.0f);
+    move(0.0f, 0.0f, this->distance);
 }
