@@ -31,18 +31,18 @@ public:
 
    //! @brief Get the pickable objects.
    //! @return The pickable objects.
-   inline const std::list<ofxIPickable *> &getPickableObjects() const { return this->pickableObjects; }
+   const std::list<ofxIPickable *> &getPickableObjects() const;
 
    //! @brief Clear pickable objects.
-   inline void clearPickableObjects() { this->pickableObjects.clear(); }
+   void clearPickableObjects();
 
    //! @brief Get the pixel size around the cursor used during picking.
    //! @return The pixel size around the cursor used during picking.
-   inline int getPickPixelSize() const { return this->pickPixelSize; }
+   int getPickPixelSize() const;
 
    //! @brief Set the pixel size around the cursor used during picking.
    //! @param The pixel size around the cursor used during picking.
-   inline void setPickPixelSize(int size) { this->pickPixelSize = size; }
+   void setPickPixelSize(int size);
 
 private:
    //! @brief Number of channels used during picking.
@@ -65,3 +65,11 @@ protected:
    //! @brief The list of pickable objects.
    std::list<ofxIPickable *> pickableObjects;
 };
+
+inline const std::list<ofxIPickable *> &ofxPickableScene::getPickableObjects() const { return this->pickableObjects; }
+
+inline void ofxPickableScene::clearPickableObjects() { this->pickableObjects.clear(); }
+
+inline int ofxPickableScene::getPickPixelSize() const { return this->pickPixelSize; }
+
+inline void ofxPickableScene::setPickPixelSize(int size) { this->pickPixelSize = size; }
