@@ -18,7 +18,7 @@ public:
     
     //! @brief Set the camera target position.
     //! @param pos The target position.
-    inline void setTargetPosition(const ofVec3f &pos) { this->target.setPosition(pos); }
+    void setTargetPosition(const ofVec3f &pos);
 
     //! @brief Tumble (dolly) the camera.
     void tumble(float yaw, float pitch);
@@ -63,3 +63,5 @@ protected:
     //! @brief Camera pan amount.
     float panAmount;
 }; // end class ofViewportCamera
+
+inline void ofxViewportCam::setTargetPosition(const ofVec3f &pos) { this->target.setPosition(pos); }
