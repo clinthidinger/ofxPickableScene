@@ -78,8 +78,6 @@ ofxIPickable *ofxPickableScene::pick(int x, int y, ofCamera &cam, unsigned int m
     
     // render scene
     ofRectangle rect = ofGetCurrentViewport();
-    rect.x = 0; //! @note Sometime these aren't zero.
-    rect.y = 0;
     cam.begin(rect);
     
     ofClear(0, 0, 0, 0);
