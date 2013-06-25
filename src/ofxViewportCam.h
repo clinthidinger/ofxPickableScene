@@ -36,7 +36,12 @@ public:
     void frameBoundingBox(const ofVec3f &minCorner, const ofVec3f &maxCorner);
 
     //! @brief Reset the camera.
+    void reset(ofVec3f translation, ofVec3f orientation);
+
+    //! @brief Reset the camera.
     void reset();
+
+	void clearTargetPosition();
     
 protected:
    //! @brief Previous mouse screen position.
@@ -44,6 +49,9 @@ protected:
 
    //! @brief Whether to draw wire frame. ???
     bool drawWireFrame;
+
+    //! @brief Flag for target set state.
+    bool isTargetSet;
 
     //! @brief Camera target.
     ofNode target;
@@ -63,5 +71,3 @@ protected:
     //! @brief Camera pan amount.
     float panAmount;
 }; // end class ofViewportCamera
-
-inline void ofxViewportCam::setTargetPosition(const ofVec3f &pos) { this->target.setPosition(pos); }
