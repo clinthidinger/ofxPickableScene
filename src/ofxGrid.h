@@ -19,66 +19,41 @@ public:
    {
    }
     
-   //! @brief Draw the grid.
-    inline void draw()
-    {
-        ofPushStyle();
-        ofDisableLighting();
-        ofSetColor(this->color);
-        int xSize = static_cast<int>(this->size.x);
-        int zSize = static_cast<int>(this->size.z);
-        const int xMax = xSize + this->spacing;
-        const int zMax = zSize + this->spacing;
-        ofPushMatrix();
-        ofTranslate(this->offset);
-        for (int xVal = -xSize; xVal < xMax; xVal += this->spacing)
-        {
-            if (xVal == 0)
-            {
-                ofSetLineWidth(3);
-                ofSetColor(0.0, 0.0, 0.0);
-            }
-            ofLine(xVal, 0, -zSize, xVal, 0, zSize);
-            if (xVal == 0)
-            {
-                ofSetLineWidth(1);
-                ofSetColor(this->color);
-            }
-            for (int zVal = -zSize; zVal < zMax; zVal += this->spacing)
-            {
-                if (zVal == 0)
-                {
-                    ofSetLineWidth(3);
-                    ofSetColor(0.0f, 0.0f, 0.0f);
-                }
-                ofLine(xSize, 0, zVal, -xSize, 0, zVal);
-                if (zVal == 0)
-                {
-                    ofSetLineWidth(1);
-                    ofSetColor(this->color);
-                }
-            }// end for each z dir line
-        }// end for each x dir line
-        ofPopMatrix();
-        ofPopStyle();
-    }
+    //! @brief Draw the grid.
+    void draw();
     
     //! @brief Get the grid color.
     //! @reurn The grid color.
-    inline const ofColor &getColor() const { return this->color; }
+    const ofColor &getColor() const;
     
     //! @brief Get the grid offset.
     //! @return The grid offset.
-    inline const ofVec3f &getOffset() const { return this->offset; }
+    const ofVec3f &getOffset() const;
     
     //! @brief Get the grid size.
     //! @return The grid size.
-    inline const ofVec3f &getSize() const { return this->size; }
+    const ofVec3f &getSize() const;
     
     //! @brief Get the grid spacing.
     //! @return The grid spacing.
-    inline const float &getSpacing() const { return this->spacing; }
+    const float &getSpacing() const;
     
+    //! @brief Set the color.
+    //! @param color The color.
+    void setColor(const ofColor &color);
+    
+    //! @brief Set the grid offset from origin.
+    //! @param offset The offset.
+    void setOffset(const ofVec3f &offset);
+    
+    //! @brief Set the grid size.
+    //! @param size The size.
+    void setSize(const ofVec3f &size);
+    
+    //! @brief Set the grid spacing between lines.
+    //! @param spacing The spacing.
+    void setSpacing(const float spacing);
+
 private:
    // @brief Color of the grid lines.
     ofColor color;
@@ -92,4 +67,21 @@ private:
     //! @brief Spacing between the lines of the grid.
     float spacing;
 };
+
+
+inline const ofColor &ofxGrid::getColor() const { return this->color; }
+
+inline const ofVec3f &ofxGrid::getOffset() const { return this->offset; }
+
+inline const ofVec3f &ofxGrid::getSize() const { return this->size; }
+
+inline const float &ofxGrid::getSpacing() const { return this->spacing; }
+
+inline void ofxGrid::setColor(const ofColor &color) { this->color = color; }
+
+inline void ofxGrid::setOffset(const ofVec3f &offset) { this->offset = offset; }
+
+inline void ofxGrid::setSize(const ofVec3f &size) { this->size = size; }
+
+inline void ofxGrid::setSpacing(const float spacing) { this->spacing = spacing; }
 
